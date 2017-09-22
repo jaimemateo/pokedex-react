@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 
+import PokemonListContainer from './PokemonListContainer';
+
 class BaseContainer extends Component {
 	render() {
-    return <h1>Base Container</h1>
+    return (
+      <div className="Base-body">
+        <PokemonListContainer/>
+      </div>
+    );
   }
 }
 
