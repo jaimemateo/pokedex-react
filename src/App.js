@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.png';
 import './App.css';
 
-import BaseContainer from './BaseContainer'
-
+import BaseContainer from './BaseContainer';
+  
 class App extends Component {
   render() {
     return (
