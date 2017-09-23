@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import PokemonCardComponent from './PokemonCardComponent';
+import PaginationComponent from './PaginationComponent';
 
 class PokemonListContainer extends Component {
 
@@ -8,14 +9,9 @@ class PokemonListContainer extends Component {
     super(props);
 
 		this.state = {
-			list: [],
-			search: ''
+			list: []
 		};
-		this.GetPokemonList =this.GetPokemonList.bind(this);
-	}
-
-	componentWillReceiveProps(nextProps) {
-		this.setState({ search: nextProps.search });
+		this.GetPokemonList = this.GetPokemonList.bind(this);
 	}
 
 	componentDidUpdate(prevProps, prevState) {
@@ -26,6 +22,20 @@ class PokemonListContainer extends Component {
 
   componentDidMount() {
     this.GetPokemonList();
+	}
+
+	GetPokemonPageList = (page) => {
+		fetch('http://pokeapi.co/api/v2/pokemon/?limit=5&offset=' + page * 5)
+		.then((response) =>  {
+			if(response.status === 200) return response.json();
+			else throw new Error('Something went wrong on Pokeapi!');
+		})
+		.then((response) => {
+			this.setState({ list: response.results});
+		})
+		.catch((error) =>  {
+			console.log('Error message')
+		});
 	}
 	
 	GetPokemonList() {
@@ -61,12 +71,13 @@ class PokemonListContainer extends Component {
 	render() {
 		const pokemonItems = this.state.list.map((pokemon) =>
 			<li key={pokemon.name}>
-				<PokemonCardComponent pokemon={pokemon} />
+				< PokemonCardComponent pokemon={pokemon} />
 			</li>
 		);
     return (
 			<div>
 				<ul> {pokemonItems} </ul>
+      	< PaginationComponent callbackFromParent={this.GetPokemonPageList} />
 			</div>
     );
   }
