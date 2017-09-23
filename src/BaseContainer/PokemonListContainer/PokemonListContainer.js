@@ -40,22 +40,28 @@ class PokemonListContainer extends Component {
 				this.setState({ list: response.results});
 			})
 			.catch((error) =>  {
-				console.error(error);
+				console.log('Error message')
 			});
 		}
 		else {
-			let pokemon = {}
-			pokemon = {
-				name: this.state.search
-			}
-			this.setState({ list: [pokemon]});
+			fetch('http://pokeapi.co/api/v2/pokemon/' + search)
+			.then((response) =>  {
+				if(response.status === 200) return response.json();
+				else throw new Error('Something went wrong on Pokeapi!');
+			})
+			.then((response) => {
+				this.setState({ list: [response] });
+			})
+			.catch((error) =>  {
+				this.setState({ list: [] });
+			});
 		}
 	}
 
 	render() {
 		const pokemonItems = this.state.list.map((pokemon) =>
 			<li key={pokemon.name}>
-				<PokemonCardComponent name={pokemon.name} />
+				<PokemonCardComponent pokemon={pokemon} />
 			</li>
 		);
     return (

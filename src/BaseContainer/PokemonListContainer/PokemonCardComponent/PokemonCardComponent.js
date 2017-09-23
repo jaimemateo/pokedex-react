@@ -11,31 +11,31 @@ class PokemonCardComponent extends Component {
 				sprites:[] 
 			}
 		};
+		this.GetPokemonDataByName =this.GetPokemonDataByName.bind(this);
   }
 
   componentDidMount() {
-    this.GetPokemonDataById();
+		this.GetPokemonDataByName();
 	}
 	
-	GetPokemonDataById() {
-		const { name } = this.props
-    fetch('http://pokeapi.co/api/v2/pokemon/' + name)
-		.then((response) =>  {
-			if(response.status === 200) return response.json();
-			else throw new Error('Something went wrong on Pokeapi!');
-		})
-		.then((response) => {
-			this.setState({ pokemon: response});
-		})
-		.catch((error) =>  {
-			let pokemonNotFound = {}
-			pokemonNotFound = {
-				name: 'Not Found',
-				types: [],
-				sprites:[] 
-			}
-			this.setState({ pokemon: pokemonNotFound});
-		});
+	GetPokemonDataByName() {
+		const { pokemon } = this.props
+		if (!pokemon.id) {
+			fetch('http://pokeapi.co/api/v2/pokemon/' + pokemon.name)
+			.then((response) =>  {
+				if(response.status === 200) return response.json();
+				else throw new Error('Something went wrong on Pokeapi!');
+			})
+			.then((response) => {
+				this.setState({ pokemon: response});
+			})
+			.catch((error) =>  {
+				console.log('Error message')
+			});
+		}
+		else {
+			this.setState({ pokemon: pokemon});
+		}
 	}
 
 	render() {
@@ -46,7 +46,6 @@ class PokemonCardComponent extends Component {
 		);
     return (
 			<div>
-
 				<h2>{this.state.pokemon.id}</h2>
 				<h3>{this.state.pokemon.name}</h3>
 				<img src={this.state.pokemon.sprites.front_default} alt=""/>
