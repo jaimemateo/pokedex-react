@@ -9,7 +9,7 @@ class PokemonCardComponent extends Component {
 			pokemon: {
 				types: [],
 				sprites:[] 
-			} 
+			}
 		};
   }
 
@@ -28,7 +28,13 @@ class PokemonCardComponent extends Component {
 			this.setState({ pokemon: response});
 		})
 		.catch((error) =>  {
-			console.error(error);
+			let pokemonNotFound = {}
+			pokemonNotFound = {
+				name: 'Not Found',
+				types: [],
+				sprites:[] 
+			}
+			this.setState({ pokemon: pokemonNotFound});
 		});
 	}
 
@@ -40,9 +46,10 @@ class PokemonCardComponent extends Component {
 		);
     return (
 			<div>
+
 				<h2>{this.state.pokemon.id}</h2>
 				<h3>{this.state.pokemon.name}</h3>
-				<img src={this.state.pokemon.sprites.front_default} />
+				<img src={this.state.pokemon.sprites.front_default} alt=""/>
 				<ul>{pokemonTypes}</ul>
 			</div>
     );

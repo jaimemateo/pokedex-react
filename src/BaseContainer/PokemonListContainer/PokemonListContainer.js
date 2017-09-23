@@ -8,26 +8,48 @@ class PokemonListContainer extends Component {
     super(props);
 
 		this.state = {
-			list: []
+			list: [],
+			search: ''
 		};
-  }
+		this.GetPokemonList =this.GetPokemonList.bind(this);
+	}
+
+	componentWillReceiveProps(nextProps) {
+		this.setState({ search: nextProps.search });
+	}
+
+	componentDidUpdate(prevProps, prevState) {
+		if (prevProps.search !== this.props.search) {
+			this.GetPokemonList();
+		}
+	}
 
   componentDidMount() {
     this.GetPokemonList();
 	}
 	
 	GetPokemonList() {
-    fetch('http://pokeapi.co/api/v2/pokemon/?limit=5')
-		.then((response) =>  {
-			if(response.status === 200) return response.json();
-			else throw new Error('Something went wrong on Pokeapi!');
-		})
-		.then((response) => {
-			this.setState({ list: response.results});
-		})
-		.catch((error) =>  {
-			console.error(error);
-		});
+		const { search } = this.props
+		if (search === "") {
+			fetch('http://pokeapi.co/api/v2/pokemon/?limit=5')
+			.then((response) =>  {
+				if(response.status === 200) return response.json();
+				else throw new Error('Something went wrong on Pokeapi!');
+			})
+			.then((response) => {
+				this.setState({ list: response.results});
+			})
+			.catch((error) =>  {
+				console.error(error);
+			});
+		}
+		else {
+			let pokemon = {}
+			pokemon = {
+				name: this.state.search
+			}
+			this.setState({ list: [pokemon]});
+		}
 	}
 
 	render() {
@@ -38,7 +60,6 @@ class PokemonListContainer extends Component {
 		);
     return (
 			<div>
-				<h1>Pokemon List Container</h1>
 				<ul> {pokemonItems} </ul>
 			</div>
     );
