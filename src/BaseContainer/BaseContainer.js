@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
-import PokemonListContainer from './PokemonListContainer';
+import SearchContainer from './SearchContainer';
 
 class BaseContainer extends Component {
 	render() {
     return (
       <div className="Base-body">
-        <PokemonListContainer/>
+        <SearchContainer/>
       </div>
     );
   }
