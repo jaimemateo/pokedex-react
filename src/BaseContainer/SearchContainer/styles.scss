@@ -1,3 +1,22 @@
 .search-container {
-    margin: 20px;
+  margin: 40px;
+	input.search-input {
+		width: 25%;
+		background: rgba(0, 0, 0, 0);
+		border: none;
+		outline: none;
+		padding: 10px;
+		font-weight: 500;
+		font-size: 16px;
+		letter-spacing: 0.5px;
+		border-bottom: 1px solid green;
+		text-align: center;
+		color: #333;
+		&.invalid {
+			border-bottom: 1px solid #AE2029;
+		}
+		&:focus {
+			border-bottom: 3px solid green;
+		}
+	}
 }
