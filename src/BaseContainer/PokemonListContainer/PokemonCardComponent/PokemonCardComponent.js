@@ -23,7 +23,7 @@ class PokemonCardComponent extends Component {
 	GetPokemonDataByName() {
 		const { pokemon } = this.props
 		if (pokemon.url) {
-			fetch(pokemon.url)
+			fetch('https://pokeapi.co/api/v2/pokemon/' + pokemon.name)
 			.then((response) =>  {
 				if(response.status === 200) return response.json();
 				else throw new Error('Something went wrong on Pokeapi!');
