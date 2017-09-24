@@ -10,5 +10,11 @@
 		li {
 			display: inline;
 		}
-  }
+	}
+	.list-empty {
+		color: #ED5465;
+	}
+	.list-loading {
+		color: rgba(40,150,186,.7);
+	}
 }
