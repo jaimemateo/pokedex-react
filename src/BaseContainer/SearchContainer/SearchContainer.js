@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import PokemonListContainer from '../PokemonListContainer';
-import './styles.css';
+import './styles.scss';
 
 class SearchContainer extends Component {
 
