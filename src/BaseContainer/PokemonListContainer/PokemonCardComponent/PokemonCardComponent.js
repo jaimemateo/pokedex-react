@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import './styles.scss';
+
 class PokemonCardComponent extends Component {
 
   constructor(props){

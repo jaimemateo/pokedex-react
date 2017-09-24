@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import PokemonCardComponent from './PokemonCardComponent';
 import PaginationComponent from './PaginationComponent';
 
+import './styles.scss';
+
 class PokemonListContainer extends Component {
 
   constructor(props){
@@ -75,7 +77,7 @@ class PokemonListContainer extends Component {
 			</li>
 		);
     return (
-			<div>
+			<div className="list-container">
 				<ul> {pokemonItems} </ul>
       	< PaginationComponent changePage={this.GetPokemonPageList} />
 			</div>
