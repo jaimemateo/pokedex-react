@@ -77,7 +77,7 @@ class PokemonListContainer extends Component {
     return (
 			<div>
 				<ul> {pokemonItems} </ul>
-      	< PaginationComponent callbackFromParent={this.GetPokemonPageList} />
+      	< PaginationComponent changePage={this.GetPokemonPageList} />
 			</div>
     );
   }

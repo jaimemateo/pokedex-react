@@ -13,7 +13,7 @@ class PaginationComponent extends Component {
 	}
 
 	GoToPage(page) {
-		this.props.callbackFromParent(page)
+		this.props.changePage(page)
 		this.setState({currentPage: page})
 	}
 
