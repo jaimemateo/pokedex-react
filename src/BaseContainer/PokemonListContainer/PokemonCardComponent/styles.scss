@@ -1,0 +1,41 @@
+.card-component {
+  height: 160px;
+  width: 160px;
+  margin: 40px;
+  float: left;
+  border: 1px solid #333;
+  text-transform: capitalize;
+  background-color: #fafafa;
+  opacity: 0.9;
+  &:hover{ 
+    opacity: 1;
+  }
+  .card-title {
+    height: 20px;
+    margin: 0;
+    padding: 10px;
+    background-color: #333;
+    letter-spacing: 2px;
+    color: white;
+    font-size: 14px;
+    font-weight: 300;
+  }
+  .card-sprite {
+    height: 80px;
+  }
+  .card-types {
+    height: 28px;
+    margin: 0;
+    padding:4px;
+    background-color: #6EB645;
+    letter-spacing: 2px;
+    color: white;
+    font-size: 14px;
+    font-weight: 300;
+    .card-type{
+      float: left;
+      padding: 5px 10px;
+      text-align: center; 
+    }
+  }
+}

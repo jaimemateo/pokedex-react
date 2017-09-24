@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import './styles.scss';
+
 class PaginationComponent extends Component {
 
   constructor(props){
@@ -19,7 +21,7 @@ class PaginationComponent extends Component {
 
 	render() {
 		return (
-			<div>
+			<div className="pagination-container" >
 				<button type="button" onClick={() => { this.GoToPage(0) }} disabled = {this.state.currentPage === 0} > 1 </button>
 				<button type="button" onClick={() => { this.GoToPage(1) }} disabled = {this.state.currentPage === 1} > 2 </button>
 				<button type="button" onClick={() => { this.GoToPage(2) }} disabled = {this.state.currentPage === 2} > 3 </button>
