@@ -1,6 +1,6 @@
 .card-component {
-  height: 160px;
-  width: 160px;
+  height: 220px;
+  width: 180px;
   margin: 40px;
   float: left;
   border: 1px solid #333;
@@ -21,13 +21,12 @@
     font-weight: 300;
   }
   .card-sprite {
-    height: 80px;
+    height: 120px;
   }
   .card-types {
     height: 28px;
     margin: 0;
     padding:4px;
-    background-color: #6EB645;
     letter-spacing: 2px;
     color: white;
     font-size: 14px;
@@ -35,7 +34,74 @@
     .card-type{
       float: left;
       padding: 5px 10px;
-      text-align: center; 
+      text-align: center;
+      display: inline;
+      span{
+        padding: 8px 7px;
+        border-radius: 5px; 
+        font-size: 12px;
+        opacity: 0.8;
+        &.normal{
+          background-color: #636363;
+        }
+        &.fighting{
+          background-color: #BD4505;
+        }
+        &.flying{
+          background-color: #3A4B76;
+        }
+        &.poison{
+          background-color: #8500B1;
+        }
+        &.ground{
+          background-color: #B17000;
+        }
+        &.rock{
+          background-color: #341403;
+        }
+        &.bug{
+          background-color: #9ED506;
+        }
+        &.ghost{
+          background-color: #453030;
+        }
+        &.steel{
+          background-color: #984D4D;
+        }
+        &.fire{
+          background-color: rgba(184, 14, 14, 0.85);
+        }
+        &.water{
+          background-color: #242EBD;
+        }
+        &.grass{
+          background-color: #154611;
+        }
+        &.electric{
+          background-color: #E0E400;
+        }
+        &.psychic{
+          background-color: #4D388A;
+        }
+        &.ice{
+          background-color: #12DBFF;
+        }
+        &.dragon{
+          background-color: #410E35;
+        }
+        &.dark{
+          background-color: #151515;
+        }
+        &.fairy{
+          background-color: #D50BAC;
+        }
+        &.shadow{
+          background-color: #6A5757;
+        }
+        &.unknown{
+          background-color: #FFFFFF;
+        }
+      }
     }
   }
 }
