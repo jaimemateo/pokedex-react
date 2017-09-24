@@ -79,31 +79,20 @@ class PokemonListContainer extends Component {
 				< PokemonCardComponent pokemon={pokemon} />
 			</li>
 		);
-		if(this.state.list.length > 0) {
-			return (
-				<div className="list-container">
-					{this.state.loading &&
-						<h2 className="list-loading">Loading...</h2>
-					}
-					<ul> {pokemonItems} </ul>
-					{this.state.list.length > 1 &&
-						< PaginationComponent changePage={this.GetPokemonPageList} />
-					}
-				</div>
-			);
-		}
-		else {
-			return (
-				<div className="list-container">
-					{this.state.loading &&
-						<h2 className="list-loading">Searching...</h2>
-					}
-					{!this.state.loading &&
-						<h2 className="list-empty">Not found!</h2>
-					}
-				</div>
-			);
-		}
+		return (
+			<div className="list-container">
+				{this.state.loading &&
+					<h2 className="list-loading">Loading...</h2>
+				}
+				{this.state.list.length === 0 && !this.state.loading &&
+					<h2 className="list-empty">Not found!</h2>
+				}
+				<ul> {pokemonItems} </ul>
+				{this.props.search === '' &&
+					< PaginationComponent changePage={this.GetPokemonPageList} />
+				}
+			</div>
+		);
   }
 }
 
