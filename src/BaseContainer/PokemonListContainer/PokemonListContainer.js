@@ -27,7 +27,7 @@ class PokemonListContainer extends Component {
 	}
 
 	GetPokemonPageList = (page) => {
-		fetch('http://pokeapi.co/api/v2/pokemon/?limit=5&offset=' + page * 5)
+		fetch('https://pokeapi.co/api/v2/pokemon/?limit=5&offset=' + page * 5)
 		.then((response) =>  {
 			if(response.status === 200) return response.json();
 			else throw new Error('Something went wrong on Pokeapi!');
@@ -43,7 +43,7 @@ class PokemonListContainer extends Component {
 	GetPokemonList() {
 		const { search } = this.props
 		if (search === "") {
-			fetch('http://pokeapi.co/api/v2/pokemon/?limit=5')
+			fetch('https://pokeapi.co/api/v2/pokemon/?limit=5')
 			.then((response) =>  {
 				if(response.status === 200) return response.json();
 				else throw new Error('Something went wrong on Pokeapi!');
@@ -56,7 +56,7 @@ class PokemonListContainer extends Component {
 			});
 		}
 		else {
-			fetch('http://pokeapi.co/api/v2/pokemon/' + search)
+			fetch('https://pokeapi.co/api/v2/pokemon/' + search)
 			.then((response) =>  {
 				if(response.status === 200) return response.json();
 				else throw new Error('Something went wrong on Pokeapi!');
