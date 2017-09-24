@@ -11,7 +11,8 @@ class PokemonListContainer extends Component {
     super(props);
 
 		this.state = {
-			list: []
+			list: [],
+			loading: false
 		};
 		this.GetPokemonList = this.GetPokemonList.bind(this);
 	}
@@ -27,20 +28,22 @@ class PokemonListContainer extends Component {
 	}
 
 	GetPokemonPageList = (page) => {
+		this.setState({loading: true, list:[]});
 		fetch('https://pokeapi.co/api/v2/pokemon/?limit=5&offset=' + page * 5)
 		.then((response) =>  {
 			if(response.status === 200) return response.json();
 			else throw new Error('Something went wrong on Pokeapi!');
 		})
 		.then((response) => {
-			this.setState({ list: response.results});
+			this.setState({ list: response.results, loading: false});
 		})
 		.catch((error) =>  {
-			console.log('Error message')
+			this.setState({ list: [], loading: false});
 		});
 	}
 	
 	GetPokemonList() {
+		this.setState({loading: true, list:[]});
 		const { search } = this.props
 		if (search === "") {
 			fetch('https://pokeapi.co/api/v2/pokemon/?limit=5')
@@ -49,10 +52,10 @@ class PokemonListContainer extends Component {
 				else throw new Error('Something went wrong on Pokeapi!');
 			})
 			.then((response) => {
-				this.setState({ list: response.results});
+				this.setState({ list: response.results, loading: false});
 			})
 			.catch((error) =>  {
-				console.log('Error message')
+				this.setState({ list: [], loading: false});
 			});
 		}
 		else {
@@ -62,10 +65,10 @@ class PokemonListContainer extends Component {
 				else throw new Error('Something went wrong on Pokeapi!');
 			})
 			.then((response) => {
-				this.setState({ list: [response] });
+				this.setState({ list: [response], loading: false });
 			})
 			.catch((error) =>  {
-				this.setState({ list: [] });
+				this.setState({ list: [], loading: false });
 			});
 		}
 	}
@@ -76,12 +79,31 @@ class PokemonListContainer extends Component {
 				< PokemonCardComponent pokemon={pokemon} />
 			</li>
 		);
-    return (
-			<div className="list-container">
-				<ul> {pokemonItems} </ul>
-      	< PaginationComponent changePage={this.GetPokemonPageList} />
-			</div>
-    );
+		if(this.state.list.length > 0) {
+			return (
+				<div className="list-container">
+					{this.state.loading &&
+						<h2 className="list-loading">Loading...</h2>
+					}
+					<ul> {pokemonItems} </ul>
+					{this.state.list.length > 1 &&
+						< PaginationComponent changePage={this.GetPokemonPageList} />
+					}
+				</div>
+			);
+		}
+		else {
+			return (
+				<div className="list-container">
+					{this.state.loading &&
+						<h2 className="list-loading">Searching...</h2>
+					}
+					{!this.state.loading &&
+						<h2 className="list-empty">Not found!</h2>
+					}
+				</div>
+			);
+		}
   }
 }
 
