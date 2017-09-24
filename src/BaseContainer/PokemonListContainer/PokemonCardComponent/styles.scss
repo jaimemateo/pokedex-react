@@ -3,13 +3,18 @@
   width: 160px;
   margin: 40px;
   float: left;
-  border: 2px solid #333;
+  border: 1px solid #333;
   text-transform: capitalize;
+  background-color: #fafafa;
+  opacity: 0.9;
+  &:hover{ 
+    opacity: 1;
+  }
   .card-title {
     height: 20px;
     margin: 0;
     padding: 10px;
-    background-color: #b7d14d;
+    background-color: #333;
     letter-spacing: 2px;
     color: white;
     font-size: 14px;
@@ -22,7 +27,7 @@
     height: 28px;
     margin: 0;
     padding:4px;
-    background-color: #4d8cd1;
+    background-color: #6EB645;
     letter-spacing: 2px;
     color: white;
     font-size: 14px;
