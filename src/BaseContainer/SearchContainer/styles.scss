@@ -1,7 +1,9 @@
 .search-container {
   padding: 40px;
 	background-color: #fafafa;
+	height: 5vh;
 	input.search-input {
+		min-width: 300px;
 		width: 25%;
 		background: rgba(0, 0, 0, 0);
 		border: none;

@@ -42,16 +42,15 @@ class PokemonCardComponent extends Component {
 
 	render() {
 		const pokemonTypes = this.state.pokemon.types.map((type) =>
-			<li key={type.slot}>
+			<li className="card-type" key={type.slot}>
 				{type.type.name}
 			</li>
 		);
     return (
-			<div>
-				<h2>{this.state.pokemon.id}</h2>
-				<h3>{this.state.pokemon.name}</h3>
-				<img src={this.state.pokemon.sprites.front_default} alt=""/>
-				<ul>{pokemonTypes}</ul>
+			<div className="card-component">
+				<h3 className="card-title">{this.state.pokemon.id}. {this.state.pokemon.name}</h3>
+				<img className="card-sprite" src={this.state.pokemon.sprites.front_default} alt=""/>
+				<ul  className="card-types">{pokemonTypes}</ul>
 			</div>
     );
   }

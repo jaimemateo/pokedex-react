@@ -1,0 +1,36 @@
+.card-component {
+  height: 160px;
+  width: 160px;
+  margin: 40px;
+  float: left;
+  border: 2px solid #333;
+  text-transform: capitalize;
+  .card-title {
+    height: 20px;
+    margin: 0;
+    padding: 10px;
+    background-color: #b7d14d;
+    letter-spacing: 2px;
+    color: white;
+    font-size: 14px;
+    font-weight: 300;
+  }
+  .card-sprite {
+    height: 80px;
+  }
+  .card-types {
+    height: 28px;
+    margin: 0;
+    padding:4px;
+    background-color: #4d8cd1;
+    letter-spacing: 2px;
+    color: white;
+    font-size: 14px;
+    font-weight: 300;
+    .card-type{
+      float: left;
+      padding: 5px 10px;
+      text-align: center; 
+    }
+  }
+}
