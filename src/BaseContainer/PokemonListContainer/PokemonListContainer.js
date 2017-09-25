@@ -59,17 +59,25 @@ class PokemonListContainer extends Component {
 			});
 		}
 		else {
-			fetch('https://pokeapi.co/api/v2/pokemon/' + search)
-			.then((response) =>  {
-				if(response.status === 200) return response.json();
-				else throw new Error('Something went wrong on Pokeapi!');
-			})
-			.then((response) => {
-				this.setState({ list: [response], loading: false });
-			})
-			.catch((error) =>  {
-				this.setState({ list: [], loading: false });
-			});
+			const results = this.state.list.filter(pokemon =>
+				pokemon.name.includes(search)
+			)
+			if(results.length > 0) {
+				this.setState({list: results, loading: false});
+			}
+			else {
+				fetch('https://pokeapi.co/api/v2/pokemon/' + search)
+				.then((response) =>  {
+					if(response.status === 200) return response.json();
+					else throw new Error('Something went wrong on Pokeapi!');
+				})
+				.then((response) => {
+					this.setState({ list: [response], loading: false });
+				})
+				.catch((error) =>  {
+					this.setState({ list: [], loading: false });
+				});
+			}
 		}
 	}
 
